@@ -6,6 +6,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/styles/createEmotionCache";
 import theme from "@/styles/theme";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import LoggedOutModal from "@/components/LoggedOutModal";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -20,10 +21,12 @@ export default function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <title>Blaze do Guilherme</title>
       </Head>
       <CssVarsProvider theme={theme}>
         <UserProvider>
           <Component {...pageProps} />
+          <LoggedOutModal />
         </UserProvider>
       </CssVarsProvider>
     </CacheProvider>
