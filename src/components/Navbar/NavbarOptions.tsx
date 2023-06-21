@@ -1,3 +1,4 @@
+import { useDepositModal } from "@/modules/deposit/store/depositModel.store";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Box, Button } from "@mui/joy";
 import { useRouter } from "next/router";
@@ -5,13 +6,18 @@ import { useRouter } from "next/router";
 function NavbarOptions() {
   const { push } = useRouter();
   const { user, isLoading } = useUser();
+  const { handleOpen } = useDepositModal();
 
-  function handleLogin() {
+  function handleClickLogin() {
     push("/api/auth/login");
   }
 
-  function handleLogout() {
+  function handleClickLogout() {
     push("/api/auth/logout");
+  }
+
+  function handleClickDeposit() {
+    handleOpen();
   }
 
   if (isLoading) return null;
@@ -34,11 +40,11 @@ function NavbarOptions() {
                 opacity: 0.8,
               },
             }}
-            onClick={handleLogout}
+            onClick={handleClickLogout}
           >
             Sair
           </Button>
-          <Button>Depositar</Button>
+          <Button onClick={handleClickDeposit}>Depositar</Button>
         </>
       ) : (
         <>
@@ -51,11 +57,11 @@ function NavbarOptions() {
                 opacity: 0.8,
               },
             }}
-            onClick={handleLogin}
+            onClick={handleClickLogin}
           >
             Entrar
           </Button>
-          <Button onClick={handleLogin}>Cadastre-se</Button>
+          <Button onClick={handleClickLogin}>Cadastre-se</Button>
         </>
       )}
     </Box>

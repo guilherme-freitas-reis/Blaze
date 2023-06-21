@@ -1,6 +1,10 @@
 import { extendTheme } from "@mui/joy/styles";
 
 const theme = extendTheme({
+  fontFamily: {
+    body: "Sora",
+    fallback: "sans-serif",
+  },
   colorSchemes: {
     light: {
       palette: {
@@ -8,6 +12,9 @@ const theme = extendTheme({
           "500": "#f12c4c",
           solidHoverBg: "#cc2843",
           solidActiveBg: "#b3243a",
+          solidDisabledBg: "#333",
+          solidDisabledColor: "#666666",
+          softColor: "#f12c4c",
         },
         background: {
           surface: "#0f1923",
@@ -18,6 +25,7 @@ const theme = extendTheme({
         },
         neutral: {
           outlinedColor: "#bcbfc2",
+          plainHoverBg: "#797b95",
         },
       },
     },
@@ -62,6 +70,19 @@ const theme = extendTheme({
             color: "#fff",
           },
         },
+      },
+    },
+    JoyModalDialog: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          boxShadow: "none",
+          border: "none",
+          backgroundColor: "#1a242d",
+          padding: "32px 24px",
+          [theme.breakpoints.down("md")]: {
+            width: "100%",
+          },
+        }),
       },
     },
     JoySelect: {

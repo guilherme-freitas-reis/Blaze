@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
+
 import { CssVarsProvider } from "@mui/joy/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -7,6 +9,8 @@ import createEmotionCache from "@/styles/createEmotionCache";
 import theme from "@/styles/theme";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import LoggedOutModal from "@/components/LoggedOutModal";
+import DepositModal from "@/modules/deposit/views/DepositModal";
+import { ToastContainer } from "react-toastify";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -26,7 +30,22 @@ export default function MyApp(props: MyAppProps) {
       <CssVarsProvider theme={theme}>
         <UserProvider>
           <Component {...pageProps} />
+
+          <DepositModal />
           <LoggedOutModal />
+
+          <ToastContainer
+            position="top-center"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
         </UserProvider>
       </CssVarsProvider>
     </CacheProvider>
