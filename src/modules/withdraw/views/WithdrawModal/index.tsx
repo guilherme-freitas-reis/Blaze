@@ -57,6 +57,9 @@ function WithdrawModal() {
         const code = (e.response?.data as { code: string }).code;
 
         switch (code) {
+          case "INVALID_AMOUNT":
+            toast.error("Valor do saque inválido");
+            break;
           case "INSUFFICIENT_BALANCE":
             toast.error("Você não possui saldo suficiente");
             break;

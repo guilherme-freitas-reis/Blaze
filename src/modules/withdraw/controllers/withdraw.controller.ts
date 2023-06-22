@@ -10,6 +10,8 @@ export const createWithdraw = async ({
   amount,
   walletId,
 }: Pick<Withdraw, "amount" | "walletId">) => {
+  if (amount < 0) throw new Error("INVALID_AMOUNT");
+
   const wallet = await getWalletById(walletId);
 
   if (!wallet) throw new Error("WALLET_NOT_FOUND");
