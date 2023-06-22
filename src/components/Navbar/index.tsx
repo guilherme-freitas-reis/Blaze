@@ -1,7 +1,8 @@
-import { Container, Button, Box } from "@mui/joy";
-import { NavbarContainer } from "./styles";
+import { Container } from "@mui/joy";
 import Image from "next/image";
+
 import NavbarOptions from "./NavbarOptions";
+import { NavbarContainer } from "./styles";
 
 function Navbar() {
   return (
