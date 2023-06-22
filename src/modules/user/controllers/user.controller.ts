@@ -1,6 +1,7 @@
+import { User } from "@prisma/client";
+
 import { prisma } from "@/lib/prisma";
 import { createWallet } from "@/modules/wallet/controllers/wallet.controller";
-import { User } from "@prisma/client";
 
 export const getUserByAuth0Id = async (auth0Id: string) => {
   const user = await prisma.user.findUnique({
