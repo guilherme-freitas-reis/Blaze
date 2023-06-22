@@ -19,6 +19,7 @@ const theme = extendTheme({
         background: {
           surface: "#0f1923",
           backdrop: "rgba(12,21,29,.78)",
+          popup: "#0f1923",
         },
         text: {
           primary: "#797b95",
@@ -26,6 +27,7 @@ const theme = extendTheme({
         neutral: {
           outlinedColor: "#bcbfc2",
           plainHoverBg: "#797b95",
+          plainColor: "#fff",
         },
       },
     },

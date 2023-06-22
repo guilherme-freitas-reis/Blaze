@@ -1,6 +1,7 @@
-import Navbar from "@/components/Navbar";
-import { Box } from "@mui/joy";
 import React from "react";
+
+import Navbar from "@/components/Navbar";
+
 import { ContentContainer } from "./styles";
 
 interface LayoutProps {
