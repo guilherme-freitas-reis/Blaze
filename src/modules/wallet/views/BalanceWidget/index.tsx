@@ -1,4 +1,5 @@
 import React from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Image from "next/image";
 
 import { useWallet } from "../../store/wallet.store";
@@ -12,7 +13,12 @@ function BalanceWidget() {
     getBalance();
   }, [getBalance]);
 
-  if (balance === null) return null;
+  if (balance === null)
+    return (
+      <SkeletonTheme baseColor="#ffffff21" highlightColor="#19181826">
+        <Skeleton width={120} height={45} />
+      </SkeletonTheme>
+    );
 
   const balanceFormatted = balance.toLocaleString("pt-br", {
     minimumFractionDigits: 2,

@@ -1,3 +1,4 @@
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Box, Button } from "@mui/joy";
 import { useRouter } from "next/router";
@@ -20,7 +21,12 @@ function NavbarOptions() {
     handleOpen();
   }
 
-  if (isLoading) return null;
+  if (isLoading)
+    return (
+      <SkeletonTheme baseColor="#ffffff21" highlightColor="#19181826">
+        <Skeleton width={180} height={45} />
+      </SkeletonTheme>
+    );
 
   return (
     <Box
