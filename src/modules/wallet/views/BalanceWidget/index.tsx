@@ -12,7 +12,7 @@ function BalanceWidget() {
     getBalance();
   }, [getBalance]);
 
-  if (!balance) return null;
+  if (balance === null) return null;
 
   const balanceFormatted = balance.toLocaleString("pt-br", {
     minimumFractionDigits: 2,

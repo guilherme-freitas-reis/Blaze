@@ -4,6 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { Modal, ModalClose, ModalDialog } from "@mui/joy";
 import axios from "axios";
 
+import { useWallet } from "@/modules/wallet/store/wallet.store";
 import { isAxiosError } from "@/utils/error";
 
 import { useDepositModal } from "../../store/depositModel.store";
@@ -13,6 +14,7 @@ import PaymentMethods from "./components/PaymentMethods";
 
 function DepositModal() {
   const { user } = useUser();
+  const { getBalance } = useWallet();
   const { open, handleClose } = useDepositModal();
 
   const [loading, setLoading] = React.useState(false);
@@ -24,6 +26,8 @@ function DepositModal() {
 
     try {
       await axios.post("/api/deposit/create");
+
+      getBalance();
 
       toast.success("Depósito realizado com sucesso");
 

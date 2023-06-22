@@ -30,12 +30,7 @@ function WithdrawModal() {
 
   if (!user) return null;
 
-  if (!balance) {
-    getBalance();
-    return null;
-  }
-
-  const balanceFormatted = balance.toLocaleString("pt-br", {
+  const balanceFormatted = balance?.toLocaleString("pt-br", {
     minimumFractionDigits: 2,
   });
 
