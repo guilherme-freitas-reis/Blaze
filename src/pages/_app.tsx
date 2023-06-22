@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import LoggedOutModal from "@/components/LoggedOutModal";
+import PromotionalBanner from "@/components/PromotionalBanner";
 import DepositModal from "@/modules/deposit/views/DepositModal";
 import WithdrawModal from "@/modules/withdraw/views/WithdrawModal";
 import createEmotionCache from "@/styles/createEmotionCache";
@@ -13,6 +14,7 @@ import theme from "@/styles/theme";
 
 import "@/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -31,6 +33,8 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <CssVarsProvider theme={theme}>
         <UserProvider>
+          <PromotionalBanner />
+
           <Component {...pageProps} />
 
           <WithdrawModal />
