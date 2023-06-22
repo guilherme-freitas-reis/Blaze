@@ -1,18 +1,22 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentProps,
-  DocumentContext,
-} from "next/document";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 import createEmotionServer from "@emotion/server/create-instance";
 import { AppType } from "next/app";
-import { MyAppProps } from "./_app";
+import Document, {
+  DocumentContext,
+  DocumentProps,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document";
+
 import createEmotionCache from "@/styles/createEmotionCache";
 
+import { MyAppProps } from "./_app";
+
 interface MyDocumentProps extends DocumentProps {
-  emotionStyleTags: JSX.Element[];
+  emotionStyleTags: React.JSX.Element[];
 }
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {

@@ -1,16 +1,18 @@
-import "@/styles/globals.css";
-import "react-toastify/dist/ReactToastify.css";
-
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import { CssVarsProvider } from "@mui/joy/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { CacheProvider, EmotionCache } from "@emotion/react";
-import createEmotionCache from "@/styles/createEmotionCache";
-import theme from "@/styles/theme";
-import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 import LoggedOutModal from "@/components/LoggedOutModal";
 import DepositModal from "@/modules/deposit/views/DepositModal";
-import { ToastContainer } from "react-toastify";
+import WithdrawModal from "@/modules/withdraw/views/WithdrawModal";
+import createEmotionCache from "@/styles/createEmotionCache";
+import theme from "@/styles/theme";
+
+import "@/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -31,6 +33,7 @@ export default function MyApp(props: MyAppProps) {
         <UserProvider>
           <Component {...pageProps} />
 
+          <WithdrawModal />
           <DepositModal />
           <LoggedOutModal />
 
