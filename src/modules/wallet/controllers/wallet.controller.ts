@@ -1,5 +1,6 @@
-import { prisma } from "@/lib/prisma";
 import { Wallet } from "@prisma/client";
+
+import { prisma } from "@/lib/prisma";
 
 export const getWalletById = async (id: string) => {
   return await prisma.wallet.findFirst({
@@ -25,6 +26,17 @@ export const createWallet = async ({ userId }: Pick<Wallet, "userId">) => {
           id: userId,
         },
       },
+    },
+  });
+};
+
+export const getBalanceAPI = async (id: string) => {
+  return await prisma.wallet.findFirst({
+    where: {
+      id,
+    },
+    select: {
+      balance: true,
     },
   });
 };
