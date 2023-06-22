@@ -1,12 +1,15 @@
 import React from "react";
-import { useDepositModal } from "../../store/depositModel.store";
-import { Modal, ModalClose, ModalDialog } from "@mui/joy";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import PaymentMethods from "./components/PaymentMethods";
-import Loading from "./components/Loading";
-import axios from "axios";
-import { isAxiosError, isError } from "@/utils/error";
 import { toast } from "react-toastify";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { Modal, ModalClose, ModalDialog } from "@mui/joy";
+import axios from "axios";
+
+import { isAxiosError } from "@/utils/error";
+
+import { useDepositModal } from "../../store/depositModel.store";
+
+import Loading from "./components/Loading";
+import PaymentMethods from "./components/PaymentMethods";
 
 function DepositModal() {
   const { user } = useUser();
@@ -27,11 +30,10 @@ function DepositModal() {
       handleClose();
     } catch (e) {
       if (isAxiosError(e)) {
-        console.log(e);
         const code = (e.response?.data as { code: string }).code;
 
         switch (code) {
-          case "LIMIT_DEPOSIT_EXCEEDED":
+          case "DEPOSIT_LIMIT_REACHED":
             toast.error("Você atingiu o limite de depósitos diários");
             break;
           case "WALLET_NOT_FOUND":

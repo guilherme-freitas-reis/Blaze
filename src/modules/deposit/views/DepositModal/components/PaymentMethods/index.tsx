@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/joy";
 import React from "react";
-import { PaymentMethodCard } from "../../styles";
+import { Box, Typography } from "@mui/joy";
 import Image from "next/image";
+
+import { PaymentMethodCard } from "../../styles";
 
 interface PaymentMethodsProps {
   handleSelectMethod: (method: "coin" | "pix") => void;

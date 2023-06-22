@@ -1,9 +1,10 @@
+import { Deposit } from "@prisma/client";
+
 import { prisma } from "@/lib/prisma";
 import {
   getWalletById,
   incrementWalletBalance,
 } from "@/modules/wallet/controllers/wallet.controller";
-import { Deposit } from "@prisma/client";
 
 export const createDeposit = async ({
   amount,
@@ -31,7 +32,7 @@ export const createDeposit = async ({
       lastDepositDate.getMonth() === currentDate.getMonth() &&
       lastDepositDate.getDate() === currentDate.getDate()
     )
-      throw new Error("LIMIT_DEPOSIT_EXCEEDED");
+      throw new Error("DEPOSIT_LIMIT_REACHED");
   }
 
   const deposit = await prisma.deposit.create({
