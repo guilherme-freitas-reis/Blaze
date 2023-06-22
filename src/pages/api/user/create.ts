@@ -1,5 +1,6 @@
-import { createUser } from "@/modules/user/controllers/user.controller";
 import { NextApiRequest, NextApiResponse } from "next";
+
+import { createUser } from "@/modules/user/controllers/user.controller";
 
 export default async function handler(
   req: NextApiRequest,

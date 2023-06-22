@@ -1,7 +1,6 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { createDeposit } from "@/modules/deposit/controllers/deposit.controller";
 import { getUserByAuth0Id } from "@/modules/user/controllers/user.controller";
 import { getWalletByUserId } from "@/modules/wallet/controllers/wallet.controller";
 import { isError } from "@/utils/error";
@@ -10,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") return res.status(405).end();
+  if (req.method !== "GET") return res.status(405).end();
 
   try {
     const session = await getSession(req, res);
@@ -22,12 +21,7 @@ export default async function handler(
     const wallet = await getWalletByUserId(user.id);
     if (!wallet) return res.status(500).end();
 
-    const response = await createDeposit({
-      amount: 100,
-      walletId: wallet.id,
-    });
-
-    res.status(201).json(response);
+    res.status(200).json({ balance: wallet.balance });
   } catch (e) {
     if (isError(e))
       return res.status(500).json({
