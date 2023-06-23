@@ -1,5 +1,7 @@
 import React from "react";
+import { Box } from "@mui/joy";
 
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 import { ContentContainer } from "./styles";
@@ -13,7 +15,17 @@ function Layout({ children }: LayoutProps) {
     <>
       <Navbar />
 
-      <ContentContainer>{children}</ContentContainer>
+      <ContentContainer>
+        <Box
+          sx={{
+            py: 6,
+          }}
+        >
+          {children}
+        </Box>
+
+        <Footer />
+      </ContentContainer>
     </>
   );
 }
