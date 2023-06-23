@@ -12,6 +12,12 @@ export const BannerContainer = styled(Box)`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    height: 280px;
+    padding: 22px;
+    justify-content: center;
+  }
 `;
 
 export const BannerTitle = styled(Typography)`
@@ -20,6 +26,10 @@ export const BannerTitle = styled(Typography)`
   font-weight: 700;
   color: white;
   margin-bottom: 12px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    font-size: 24px;
+  }
 ` as typeof Typography;
 
 export const BannerDescription = styled(Typography)`
@@ -28,4 +38,8 @@ export const BannerDescription = styled(Typography)`
   font-weight: 400;
   color: white;
   margin-bottom: 32px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    font-size: 14px;
+  }
 ` as typeof Typography;

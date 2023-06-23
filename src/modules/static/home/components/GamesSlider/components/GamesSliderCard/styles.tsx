@@ -21,6 +21,11 @@ export const GamesSliderCardContainer = styled(Box)`
   &:hover {
     opacity: 0.7;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
 export const GamesSliderCardName = styled(Typography)`

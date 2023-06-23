@@ -1,8 +1,10 @@
 import React from "react";
 import { MdClose } from "react-icons/md";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { Alert, Box, Button, IconButton, Typography } from "@mui/joy";
+import { Box, Button, IconButton, Typography } from "@mui/joy";
 import { useRouter } from "next/router";
+
+import { PromotionalBannerContainer } from "./styles";
 
 function PromotionalBanner() {
   const { push } = useRouter();
@@ -17,11 +19,7 @@ function PromotionalBanner() {
   }
 
   return (
-    <Alert
-      sx={{
-        height: 40,
-        borderRadius: 0,
-      }}
+    <PromotionalBannerContainer
       variant="solid"
       color="success"
       endDecorator={
@@ -47,7 +45,7 @@ function PromotionalBanner() {
           Receber
         </Button>
       </Box>
-    </Alert>
+    </PromotionalBannerContainer>
   );
 }
 

@@ -18,7 +18,10 @@ function Layout({ children }: LayoutProps) {
       <ContentContainer>
         <Box
           sx={{
-            py: 6,
+            py: {
+              xs: 3,
+              md: 6,
+            },
           }}
         >
           {children}

@@ -1,4 +1,4 @@
-import { Container } from "@mui/joy";
+import { Box, Container } from "@mui/joy";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,32 @@ function Navbar() {
     <NavbarContainer>
       <Container>
         <Link href={"/"}>
-          <Image src="/logo.svg" alt="Blaze Logo" width={109} height={39} />
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+            }}
+          >
+            <Image src="/logo.svg" alt="Blaze Logo" width={109} height={39} />
+          </Box>
+
+          <Box
+            sx={{
+              display: {
+                xs: "block",
+                md: "none",
+              },
+            }}
+          >
+            <Image
+              src="/logo-mobile.svg"
+              alt="Blaze Logo"
+              width={24}
+              height={30}
+            />
+          </Box>
         </Link>
 
         <NavbarOptions />

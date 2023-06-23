@@ -11,4 +11,14 @@ export const NavbarContainer = styled("nav")`
     align-items: center;
     justify-content: space-between;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    button {
+      height: 42px;
+      min-height: unset;
+      padding-block: 0;
+      padding-inline: 12px;
+      font-size: 12px;
+    }
+  }
 `;

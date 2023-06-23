@@ -16,4 +16,10 @@ export const GamesSliderTitle = styled(Typography)`
 export const GamesSliderCardContainer = styled(Box)`
   display: flex;
   gap: 24px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 `;
