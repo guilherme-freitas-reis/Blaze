@@ -29,6 +29,9 @@ const theme = extendTheme({
           plainHoverBg: "#797b95",
           plainColor: "#fff",
         },
+        success: {
+          solidBg: "#04d47c",
+        },
       },
     },
     dark: {

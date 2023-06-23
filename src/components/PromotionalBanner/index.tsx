@@ -19,7 +19,7 @@ function PromotionalBanner() {
   return (
     <Alert
       sx={{
-        height: 50,
+        height: 40,
         borderRadius: 0,
       }}
       variant="solid"
@@ -43,7 +43,7 @@ function PromotionalBanner() {
           Cadastre-se e receba um bonus de $50 🔥
         </Typography>
 
-        <Button variant="soft" onClick={handleClickClaim}>
+        <Button variant="soft" size="sm" onClick={handleClickClaim}>
           Receber
         </Button>
       </Box>

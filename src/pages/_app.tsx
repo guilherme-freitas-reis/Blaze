@@ -7,6 +7,7 @@ import Head from "next/head";
 
 import LoggedOutModal from "@/components/LoggedOutModal";
 import PromotionalBanner from "@/components/PromotionalBanner";
+import Layout from "@/layouts/DefaultLayout";
 import DepositModal from "@/modules/deposit/views/DepositModal";
 import WithdrawModal from "@/modules/withdraw/views/WithdrawModal";
 import createEmotionCache from "@/styles/createEmotionCache";
@@ -35,7 +36,9 @@ export default function MyApp(props: MyAppProps) {
         <UserProvider>
           <PromotionalBanner />
 
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
 
           <WithdrawModal />
           <DepositModal />
