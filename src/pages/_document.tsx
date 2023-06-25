@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-sync-scripts */
-/* eslint-disable @next/next/next-script-for-ga */
 import React from "react";
 import createEmotionServer from "@emotion/server/create-instance";
 import { AppType } from "next/app";
@@ -26,17 +24,6 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
       <Head>
         <link rel="shortcut icon" href="https://blaze.com/favicon.ico" />
         <meta name="emotion-insertion-point" content="" />
-
-        <script src="https://www.googletagmanager.com/gtag/js?id=G-23EBV9235N" />
-        <script id="google-analytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-23EBV9235N');
-        `}
-        </script>
 
         {emotionStyleTags}
       </Head>
