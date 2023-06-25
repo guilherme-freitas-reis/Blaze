@@ -23,7 +23,7 @@ export default async function handler(
     if (!wallet) return res.status(500).end();
 
     const response = await createDeposit({
-      amount: 100,
+      amount: 50,
       walletId: wallet.id,
     });
 
