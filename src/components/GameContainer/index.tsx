@@ -10,16 +10,32 @@ interface GameContainerProps {
 
 function GameContainer({ infoComponent, gameComponent }: GameContainerProps) {
   return (
-    <Grid container>
+    <Grid
+      container
+      sx={{
+        flexDirection: {
+          xs: "column-reverse",
+          md: "row",
+        },
+      }}
+    >
       <Grid
         md={4}
+        xs={12}
         sx={{
-          borderRight: "1px solid #323b45",
+          borderRight: {
+            xs: "none",
+            md: "1px solid #323b45",
+          },
+          borderBottom: {
+            xs: "1px solid #323b45",
+            md: "none",
+          },
         }}
       >
         <ContentContainer>{infoComponent}</ContentContainer>
       </Grid>
-      <Grid md={8}>
+      <Grid xs={12} md={8}>
         <ContentContainer>{gameComponent}</ContentContainer>
       </Grid>
     </Grid>

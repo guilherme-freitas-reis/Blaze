@@ -53,6 +53,7 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 
   const initialProps = await Document.getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const emotionStyleTags = emotionStyles.styles.map((style: any) => (
     <style
       data-emotion={`${style.key} ${style.ids.join(" ")}`}

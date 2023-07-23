@@ -11,7 +11,6 @@ export const createDeposit = async ({
   walletId,
 }: Pick<Deposit, "amount" | "walletId">) => {
   const wallet = await getWalletById(walletId);
-
   if (!wallet) throw new Error("WALLET_NOT_FOUND");
 
   const lastDeposit = await prisma.deposit.findFirst({

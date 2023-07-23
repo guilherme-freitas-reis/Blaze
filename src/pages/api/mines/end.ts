@@ -1,27 +1,44 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { NextApiRequest, NextApiResponse } from "next";
 
+import {
+  endMineMatch,
+  getMineMatchActive,
+} from "@/modules/mines/controllers/mines.controller";
 import { getUserByAuth0Id } from "@/modules/user/controllers/user.controller";
 import { getWalletByUserId } from "@/modules/wallet/controllers/wallet.controller";
 import { isError } from "@/utils/error";
+
+export interface EndMineMatchResponse {
+  profit: number;
+}
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "GET") return res.status(405).end();
+  if (req.method !== "POST") return res.status(405).end();
 
   try {
     const session = await getSession(req, res);
-    if (!session) return res.status(200).end();
+    if (!session) return res.status(500).end();
 
     const user = await getUserByAuth0Id(session.user.sub);
-    if (!user) return res.status(200).end();
+    if (!user) return res.status(500).end();
 
     const wallet = await getWalletByUserId(user.id);
-    if (!wallet) return res.status(200).end();
+    if (!wallet) return res.status(500).end();
 
-    res.status(200).json({ balance: wallet.balance });
+    const mineMatchIdActive = await getMineMatchActive(wallet.id);
+    if (!mineMatchIdActive) return res.status(500).end();
+
+    const profit = await endMineMatch(mineMatchIdActive.id);
+
+    const response: EndMineMatchResponse = {
+      profit,
+    };
+
+    res.status(201).json(response);
   } catch (e) {
     if (isError(e))
       return res.status(500).json({

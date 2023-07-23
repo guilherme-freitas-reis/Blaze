@@ -1,1 +1,1 @@
-export { default } from "@/modules/mines";
+export { default } from "@/modules/mines/views";

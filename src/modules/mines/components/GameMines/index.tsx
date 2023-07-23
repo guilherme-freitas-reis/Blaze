@@ -1,36 +1,42 @@
 import React from "react";
-import { Grid } from "@mui/joy";
 
+import { useMineStore } from "../../store/mine.store";
+import { PositionProps } from "../../types/mines_match.type";
 import CardMines from "../CardMines";
 
+import { GameMinesContainer } from "./styles";
+
 function GameMines() {
-  const emptyArrayGame = Array.from({ length: 25 }, () => ({
-    isMine: false,
-    isRevealed: false,
-  }));
+  const { mineMatch, hasActiveGame, createRoundMineMatch } = useMineStore();
 
-  const defaultGame = [];
-  const subarraySize = 5;
+  async function handleClickMine(index: number) {
+    if (!hasActiveGame) return;
 
-  for (let i = 0; i < emptyArrayGame.length; i += subarraySize) {
-    const subarray = emptyArrayGame.slice(i, i + subarraySize);
-    defaultGame.push(subarray);
+    await createRoundMineMatch(String(index));
   }
 
+  const positions =
+    mineMatch?.positions ??
+    Array.from(
+      { length: 25 },
+      (_, index) =>
+        ({
+          position: index,
+          isRevealed: false,
+          type: "empty",
+        } as PositionProps)
+    );
+
   return (
-    <Grid container>
-      {defaultGame.map((row, rowIndex) => (
-        <Grid xs={12} key={rowIndex}>
-          <Grid container spacing={2} sx={{ justifyContent: "center" }}>
-            {row.map((col, colIndex) => (
-              <Grid xs={4} key={colIndex}>
-                <CardMines isMine={col.isMine} isRevealed={col.isRevealed} />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
+    <GameMinesContainer>
+      {positions.map((item) => (
+        <CardMines
+          onClick={() => void handleClickMine(item.position)}
+          key={item.position}
+          position={item}
+        />
       ))}
-    </Grid>
+    </GameMinesContainer>
   );
 }
 
