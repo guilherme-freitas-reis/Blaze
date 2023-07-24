@@ -26,6 +26,7 @@ function InfoMines() {
     setMoneyValue,
     setMinesNumber,
     createMineMatch,
+    endMineMatch,
     hasActiveGame,
     mineMatch,
   } = useMineStore();
@@ -48,7 +49,7 @@ function InfoMines() {
   }
 
   function handleStopGame() {
-    return null;
+    endMineMatch();
   }
 
   const balanceFormatted = mineMatch?.profitOnStop?.toLocaleString("pt-br", {
@@ -69,11 +70,15 @@ function InfoMines() {
         </>
       ) : (
         <>
-          <Input
-            placeholder="Quantia"
-            value={moneyValue}
-            onChange={(e) => setMoneyValue(e.target.value)}
-          />
+          <FormControl>
+            <FormLabel>VALOR DA APOSTA</FormLabel>
+            <Input
+              placeholder="Quantia"
+              value={moneyValue}
+              onChange={(e) => setMoneyValue(e.target.value)}
+              type="tel"
+            />
+          </FormControl>
 
           <FormControl>
             <FormLabel>NÚMERO DE MINAS</FormLabel>

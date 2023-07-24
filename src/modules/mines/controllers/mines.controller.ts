@@ -83,12 +83,19 @@ const loseMineMatch = async (mineMatchId: string) => {
   });
 };
 
-export const calculateProfit = async (mineMatch: MineMatch) => {
+export const calculateProfit = async (
+  mineMatch: MineMatch
+): Promise<number> => {
   const roundsNumber = await getCountRoundMinesByMatchId(mineMatch.id);
 
-  if (roundsNumber === 0) return mineMatch.betAmount;
+  if (roundsNumber === 0) return parseFloat(mineMatch.betAmount.toFixed(2));
 
-  return mineMatch.betAmount * (0.075 * mineMatch.mines * roundsNumber);
+  return parseFloat(
+    (
+      mineMatch.betAmount +
+      mineMatch.betAmount * ((3 / (25 - mineMatch.mines)) * roundsNumber)
+    ).toFixed(2)
+  );
 };
 
 export const getMineMatchById = async (id: string) => {

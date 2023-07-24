@@ -1,9 +1,9 @@
+import { toast } from "react-toastify";
 import axios, { isAxiosError } from "axios";
 import { create } from "zustand";
 
 import { GetMineMatchActiveResponse } from "@/pages/api/mines/active";
 import { CreateMineMatchResponse } from "@/pages/api/mines/create";
-import { EndMineMatchResponse } from "@/pages/api/mines/end";
 import { CreateRoundMineResponse } from "@/pages/api/mines/round";
 
 import { MinesFormProps } from "../types/mines.form";
@@ -21,7 +21,7 @@ export interface MineStoreProps {
 
   getMineMatchActive: () => Promise<GetMineMatchActiveResponse | undefined>;
   createMineMatch: (props: MinesFormProps) => Promise<void>;
-  endMineMatch: () => Promise<EndMineMatchResponse | undefined>;
+  endMineMatch: () => Promise<void>;
   createRoundMineMatch: (position: string) => Promise<void>;
 }
 
@@ -48,7 +48,9 @@ export const useMineStore = create<MineStoreProps>((set) => ({
 
       return data;
     } catch (e) {
-      if (isAxiosError(e)) console.error(e);
+      if (isAxiosError(e)) {
+        toast.error("Erro ao obter partida ativa");
+      }
     }
   },
   createMineMatch: async (props: MinesFormProps) => {
@@ -68,12 +70,31 @@ export const useMineStore = create<MineStoreProps>((set) => ({
         mineMatch: data?.minesMatch ?? null,
       });
     } catch (e) {
-      if (isAxiosError(e)) console.error(e);
+      if (isAxiosError(e)) {
+        const code = (e.response?.data as { code: string }).code;
+
+        switch (code) {
+          case "INSUFFICIENT_FUNDS":
+            toast.error("Você não tem saldo suficiente para criar a partida");
+            break;
+          case "INVALID_MINES_NUMBER":
+            toast.error("Número de minas inválido");
+            break;
+          default:
+            toast.error("Erro ao criar partida");
+            break;
+        }
+      }
     }
   },
   endMineMatch: async () => {
     try {
-      return await axios.post("/api/mines/end");
+      await axios.post("/api/mines/end");
+
+      set({
+        hasActiveGame: false,
+        mineMatch: null,
+      });
     } catch (e) {
       if (isAxiosError(e)) console.error(e);
     }

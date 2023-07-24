@@ -63,7 +63,7 @@ export default async function handler(
       return res.status(201).json(response);
     }
 
-    const profitOnStop = -(await calculateProfit(mineMatchActive));
+    const profitOnStop = await calculateProfit(mineMatchActive);
 
     const positionsAlreadyPlayed = await getPositionsAlreadyPlayed(
       mineMatchActive.id
