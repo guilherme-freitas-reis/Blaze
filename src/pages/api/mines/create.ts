@@ -1,10 +1,7 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import { NextApiRequest, NextApiResponse } from "next";
 
-import {
-  createMineMatch,
-  getMineMatchPositions,
-} from "@/modules/mines/controllers/mines.controller";
+import { createMineMatch } from "@/modules/mines/controllers/mines.controller";
 import { MinesMatchProps } from "@/modules/mines/types/mines_match.type";
 import { getUserByAuth0Id } from "@/modules/user/controllers/user.controller";
 import { getWalletByUserId } from "@/modules/wallet/controllers/wallet.controller";

@@ -5,6 +5,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import NextNProgress from "nextjs-progressbar";
 
 import LoggedOutModal from "@/components/LoggedOutModal";
 import PromotionalBanner from "@/components/PromotionalBanner";
@@ -33,6 +34,7 @@ export default function MyApp(props: MyAppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <title>Blaze do Guilherme</title>
       </Head>
+      <NextNProgress color="#f12c4c" />
       <GoogleAnalytics trackPageViews />
       <CssVarsProvider theme={theme}>
         <UserProvider>
