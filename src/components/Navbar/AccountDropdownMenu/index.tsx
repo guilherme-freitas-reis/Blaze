@@ -31,6 +31,10 @@ export default function AccountDropdownMenu() {
       label: "Sacar",
       onClick: () => handleOpenWithdrawModal(),
     },
+    {
+      label: "Estatísticas",
+      onClick: () => push("/stats"),
+    },
   ];
 
   return (
@@ -81,7 +85,6 @@ export default function AccountDropdownMenu() {
             sx={{
               minWidth: "200px",
               fontSize: "12px",
-              mt: "32px",
             }}
           >
             Sair

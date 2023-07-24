@@ -34,6 +34,9 @@ function Footer() {
           <Grid xs={12} md={4}>
             <FooterTitle>Sobre nós</FooterTitle>
 
+            <Link href={"/stats"}>
+              <FooterLink>Estatísticas</FooterLink>
+            </Link>
             <FooterLink>Termos de Serviço</FooterLink>
             <FooterLink>Política de Privacidade</FooterLink>
             <FooterLink>Central de Apoio</FooterLink>
