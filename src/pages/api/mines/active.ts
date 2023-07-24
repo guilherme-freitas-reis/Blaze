@@ -53,8 +53,6 @@ export default async function handler(
         } as PositionProps)
     );
 
-    console.log(positions);
-
     const response: GetMineMatchActiveResponse = {
       minesMatch: {
         endGame: false,

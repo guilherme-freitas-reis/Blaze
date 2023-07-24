@@ -48,10 +48,6 @@ export default async function handler(
       },
     };
 
-    const positions = await getMineMatchPositions(mineMatch.id);
-
-    console.log(positions);
-
     res.status(201).send(response);
   } catch (e) {
     console.error(e);
