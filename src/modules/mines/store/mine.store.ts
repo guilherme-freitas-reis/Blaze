@@ -48,9 +48,7 @@ export const useMineStore = create<MineStoreProps>((set) => ({
 
       return data;
     } catch (e) {
-      if (isAxiosError(e)) {
-        toast.error("Erro ao obter partida ativa");
-      }
+      if (isAxiosError(e)) console.error(e);
     }
   },
   createMineMatch: async (props: MinesFormProps) => {
