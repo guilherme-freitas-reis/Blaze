@@ -18,6 +18,10 @@ export const CardMinesContainer = styled(Box)`
   &:active {
     opacity: 0.5;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.values.md}px) {
+    padding: 8px;
+  }
 `;
 
 export const CardImageResult = styled("img")`
